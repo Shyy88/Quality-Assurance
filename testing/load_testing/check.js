@@ -1,7 +1,7 @@
 import { check, fail } from "k6";
 
-export function checkStatus({ response, expectedStatus, expectedContent, failOnError, printOnError, dynamicIds }) {
-  if (isEmpty(expectedStatus) && isEmpty(expectedContent)) {
+export function checkStatus({ response, expectedStatus, expectContent, failOnError, printOnError, dynamicIds }) {
+  if (isEmpty(expectedStatus) && isEmpty(expectContent)) {
     console.warn('No expected status or content specified in call to checkStatus for URL ' + response.url);
     return;
   }
@@ -19,9 +19,9 @@ export function checkStatus({ response, expectedStatus, expectedContent, failOnE
     });
   }
 
-  if (expectedContent) {
+  if (expectContent) {
     contentCheckResult = check(response, {
-      [`"${expectedContent}" in ${url} response`]: (r) => r.body.includes(expectedContent),
+      [`"${expectContent}" in ${url} response`]: (r) => r.body.includes(expectContent),
     });
   }
 
@@ -32,18 +32,18 @@ export function checkStatus({ response, expectedStatus, expectedContent, failOnE
     statusCheckResult = check(response, obj);
   }
   
-  if (!statusCheckResult || !contentCheckResult && expectedContent) {
+  if (!statusCheckResult || !contentCheckResult && expectContent) {
     if (printOnError && response.body) {
       console.log("Unexpected response: " + response.body);
     }
     if (failOnError) {
-      if (!statusCheckResult && (!contentCheckResult && expectedContent)) {
-        fail(`${response.request.method} ${url} status ${expectedStatus} and "${expectedContent}" not found in response`);
+      if (!statusCheckResult && (!contentCheckResult && expectContent)) {
+        fail(`${response.request.method} ${url} status ${expectedStatus} and "${expectContent}" not found in response`);
       } else {
         if (!statusCheckResult) {
           fail(`Received unexpected status code ${response.status} for URL: ${url}, expected ${expectedStatus}`);
         } else if (!contentCheckResult) {
-          fail(`"${expectedContent}" not found in response for URL: ${url}`);
+          fail(`"${expectContent}" not found in response for URL: ${url}`);
         }
       }
     }

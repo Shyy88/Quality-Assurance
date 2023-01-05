@@ -33,18 +33,18 @@ public class FacebookSignup {
 	
 	public void facebookSignUp() {
 		
-		driver.findElement(By.name("firstname")).sendKeys("Test");
-		driver.findElement(By.name("lastname")).sendKeys("User");
-		driver.findElement(By.name("reg_email__")).sendKeys("testuser@test.com");
-		driver.findElement(By.name("reg_passwd__")).sendKeys("testPassword");
+		driver.findElement(By.name("firstname")).sendKeys("Tester");
+		driver.findElement(By.name("lastname")).sendKeys("One");
+		driver.findElement(By.name("reg_email__")).sendKeys("testeruser@test.com");
+		driver.findElement(By.name("reg_passwd__")).sendKeys("testpw");
 		
 		Select selDate = new Select(driver.findElement(By.id("day")));
 		Select selMonth = new Select(driver.findElement(By.id("month")));
 		Select selYear = new Select(driver.findElement(By.id("year")));
 		
-		selDate.selectByVisibleText("21");
-		selMonth.selectByVisibleText("Jun");
-		selYear.selectByVisibleText("1989");
+		selDate.selectByVisibleText("01");
+		selMonth.selectByVisibleText("Jul");
+		selYear.selectByVisibleText("2003");
 		
 		driver.findElement(By.xpath("//input[@type='radio' and @value='2']")).click();
 		

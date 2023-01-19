@@ -10,6 +10,6 @@ About Gist
 ## Bug Reporting 
 > https://docs.google.com/spreadsheets/d/1C9K0tPaqM1_LAHOCj0VvtfPp5yKo3lvYb_pmePBCYFc/edit?hl=id#gid=0
 ## Testing
-- Load Testing
+- Load Testing (K6)
 - Sign Up Testing
 - Login Testing

@@ -11,5 +11,5 @@ About Gist
 > https://docs.google.com/spreadsheets/d/1C9K0tPaqM1_LAHOCj0VvtfPp5yKo3lvYb_pmePBCYFc/edit?hl=id#gid=0
 ## Testing
 - Load Testing (K6)
-- Sign Up Testing
-- Login Testing
+- Sign Up Testing (selenium)
+- Login Testing (selenium)

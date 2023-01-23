@@ -1,6 +1,7 @@
 import { check, fail } from "k6";
 
 export function checkStatus({ response, expectedStatus, expectContent, failOnError, printOnError, dynamicIds }) {
+  // console warning if empty status
   if (isEmpty(expectedStatus) && isEmpty(expectContent)) {
     console.warn('No expected status or content specified in call to checkStatus for URL ' + response.url);
     return;
@@ -31,7 +32,7 @@ export function checkStatus({ response, expectedStatus, expectContent, failOnErr
 
     statusCheckResult = check(response, obj);
   }
-  
+  // check status result 
   if (!statusCheckResult || !contentCheckResult && expectContent) {
     if (printOnError && response.body) {
       console.log("Unexpected response: " + response.body);
@@ -50,6 +51,7 @@ export function checkStatus({ response, expectedStatus, expectContent, failOnErr
   }
 }
 
+// if empty function
 function isEmpty(str) {
   return (!str || str.length === 0);
 }
